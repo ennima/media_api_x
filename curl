@@ -1,0 +1,1 @@
+curl --insecure -g -H "Content-Type: application/json" -X POST -d {\"clip\":\"Noti 11PM 080218\"} 127.0.0.1:3000/find_clip

@@ -80,4 +80,40 @@ router.post('/store_clip', function(req, res, next) {
   
 });
 
+
+router.post('/find_clip', function(req, res, next) {
+  console.log("---find_clip:  ")
+  params = get_params(req)
+  if(params == false)
+  {
+  	console.log("No hay nada que hacer")
+  	res.send({val1:"shit"})
+  }else
+  {
+  	console.log(params)
+	// let insert_query = "INSERT INTO `istorage`.`clips` (`name`, `created_date`, `modified_date`, `duration`, `path`, `has_pxy`, `archived_date`, `archived_user`, `original_path`, `format`, `origin`, `storage`) VALUES ('"+params.name+"', '"+params.created_date+"', '"+params.modified_date+"', '"+params.duration+"', '"+params.path+"', '"+params.has_pxy+"', '"+params.archived_date+"', '"+params.archived_user+"', '"+params.original_path+"', '"+params.format+"', '"+params.origin+"', '"+params.storage+"');"
+	let find_query = "SELECT * FROM clips WHERE name = '"+params.clip+"' ORDER BY id DESC LIMIT 1;";
+	
+	console.log(find_query)
+	db.executeQuery(find_query,function(error, data){
+		console.log(error);
+			// utilidades.cors(res);
+		let resultado = {}
+		console.log("Data size: "+data["rows"].length)
+		if(data["rows"].length <= 0){
+			console.log("No hay resultados para la consulta")
+			resultados = {"clips":"false"}
+		}else{
+			console.log("Yeiiii hay resultados")
+			resultados = {"clips":data.rows}
+		}
+		res.send(resultados);
+	});
+	// console.log(params)
+    //  	res.send(params)
+  }
+  
+});
+
+
 module.exports = router;
