@@ -1,1 +1,53 @@
 curl --insecure -g -H "Content-Type: application/json" -X POST -d {\"clip\":\"Noti 11PM 080218\"} 127.0.0.1:3000/find_clip
+
+curl -H "Content-Type: application/x-www-form-urlencoded" -X POST -d "param1=value1&param2=value2" 127.0.0.1:3000/find_clip
+
+
+
+From Windows CMD
+curl http://localhost:3000/find_clip -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"clip\":\""Noti 11PM 080218"\"}
+
+
+Lista de Ingest Clients
+curl http://localhost:3000/list_ingest_clients -X GET
+
+
+Agregar Ingest Client
+curl http://localhost:3000/add_ingest_client -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"name\":\"Client_X\",\"host_name\":\"Client_X\",\"IP\":\"\",\"status\":\"online\",\"message\":\""TEST message from curl"\",\"type\":\"local\",\"allow\":\"1\",\"jobs\":\"0\"}
+
+
+Cambiar el status de un ingest client por id
+curl http://localhost:3000/set_ingest_client_status -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"status\":\"standby\",\"ingest_client_id\":\"1\"}
+
+
+Cambiar el la cantidad de jobs
+curl http://localhost:3000/set_ingest_client_jobs -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"jobs\":\"3\",\"ingest_client_id\":\"1\"}
+
+
+Cambiar el tipo de cliente (local or remote)
+curl http://localhost:3000/set_ingest_client_type -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"type\":\"local\",\"ingest_client_id\":\"1\"}
+
+
+Cambiar el nombre de host
+curl http://localhost:3000/set_ingest_client_host_name -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"host_name\":\"Pepe\",\"ingest_client_id\":\"1\"}
+
+
+curl http://localhost:3000/set_ingest_client_ip -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"ip\":\"192.168.255.255\",\"ingest_client_id\":\"1\"}
+
+
+Avisar que se está ingestando material
+curl http://localhost:3000/ingesting_ingest_client -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"num_clips\":\"10\",\"ingest_client_id\":\"1\"}
+
+
+Notificar que ocurrió un error durante la ingesta
+curl http://localhost:3000/fail_ingesting_ingest_client -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"fail_msg\":\""Ocurrió un error al ingestar. :("\",\"ingest_client_id\":\"1\"}
+
+
+Notificar que el cliente se encuentra abajo
+curl http://localhost:3000/offline_ingest_client -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"ingest_client_id\":\"1\"}
+
+
+curl http://localhost:3000/online_ingest_client -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"ingest_client_id\":\"1\"}
+
+
+curl http://localhost:3000/ingest_client -X GET -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"ingest_client_id\":\"1\"}
