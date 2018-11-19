@@ -8,7 +8,7 @@ var lala = module.exports.lala = "lala";
 var pool      =    mysql.createPool({
     connectionLimit : 10,
 	host: "DEVEL-DB",
-	user: "root",
+	user: "istorage",
 	password: "password",
     database : 'istorage',
     debug    :  false

@@ -11,6 +11,8 @@ curl http://localhost:3000/find_clip -i -H "Accept: application/json" -H "Conten
 Lista de Ingest Clients
 curl http://localhost:3000/list_ingest_clients -X GET
 
+curl http://192.168.196.119:3001/list_ingest_clients -X GET
+
 
 Agregar Ingest Client
 curl http://localhost:3000/add_ingest_client -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"name\":\"Client_X\",\"host_name\":\"Client_X\",\"IP\":\"\",\"status\":\"online\",\"message\":\""TEST message from curl"\",\"type\":\"local\",\"allow\":\"1\",\"jobs\":\"0\"}
@@ -31,9 +33,11 @@ curl http://localhost:3000/set_ingest_client_type -i -H "Accept: application/jso
 Cambiar el nombre de host
 curl http://localhost:3000/set_ingest_client_host_name -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"host_name\":\"Pepe\",\"ingest_client_id\":\"1\"}
 
-
+Cambiar la IP del cliente
 curl http://localhost:3000/set_ingest_client_ip -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"ip\":\"192.168.255.255\",\"ingest_client_id\":\"1\"}
 
+Cambiar Allow del cliente (0 or 1)
+curl http://localhost:3000/set_ingest_client_allow -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"allow\":\"0\",\"ingest_client_id\":\"1\"}
 
 Avisar que se está ingestando material
 curl http://localhost:3000/ingesting_ingest_client -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"num_clips\":\"10\",\"ingest_client_id\":\"1\"}
@@ -47,7 +51,8 @@ Notificar que el cliente se encuentra abajo
 curl http://localhost:3000/offline_ingest_client -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"ingest_client_id\":\"1\"}
 
 
+Notificar que el cliente está conectado
 curl http://localhost:3000/online_ingest_client -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"ingest_client_id\":\"1\"}
 
-
+Obtiene la información de un ingest client
 curl http://localhost:3000/ingest_client -X GET -i -H "Accept: application/json" -H "Content-Type: application/json" -d {\"ingest_client_id\":\"1\"}

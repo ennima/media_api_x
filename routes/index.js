@@ -282,7 +282,6 @@ router.post('/set_ingest_client_type', function(req, res, next) {
   
 });
 
-
 router.post('/set_ingest_client_host_name', function(req, res, next) {
   
   params = get_params(req)
@@ -319,6 +318,30 @@ router.post('/set_ingest_client_ip', function(req, res, next) {
 
   	// UPDATE `istorage`.`ingest_clients` SET `status` = 'online' WHERE `ingest_clients`.`ingest_client_id` = 1;
 	let insert_query = "UPDATE `istorage`.`ingest_clients` SET `IP` = '"+params.ip+"' WHERE `ingest_clients`.`ingest_client_id` = "+params.ingest_client_id+";"
+	console.log(insert_query)
+	db.executeQuery(insert_query,function(error, data){
+		console.log(error);
+			// utilidades.cors(res);
+		res.send(data);
+	});
+	// console.log(params)
+    //  	res.send(params)
+  }
+  
+});
+
+router.post('/set_ingest_client_allow', function(req, res, next) {
+  
+  params = get_params(req)
+  if(params == false)
+  {
+  	console.log("No hay nada que hacer")
+  	res.send({val1:shit_msg + "(`allow`, `ingest_client_id`)" })
+  }else
+  {
+
+  	// UPDATE `istorage`.`ingest_clients` SET `status` = 'online' WHERE `ingest_clients`.`ingest_client_id` = 1;
+	let insert_query = "UPDATE `istorage`.`ingest_clients` SET `allow` = '"+params.allow+"' WHERE `ingest_clients`.`ingest_client_id` = "+params.ingest_client_id+";"
 	console.log(insert_query)
 	db.executeQuery(insert_query,function(error, data){
 		console.log(error);
@@ -381,7 +404,6 @@ router.post('/fail_ingesting_ingest_client', function(req, res, next) {
   }
   
 });
-
 
 router.post('/offline_ingest_client', function(req, res, next) {
   
