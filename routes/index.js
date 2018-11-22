@@ -141,7 +141,7 @@ router.get('/list_ingest_clients', function(req, res, next) {
 			resultados = {"clips":"false"}
 		}else{
 			console.log("Yeiiii hay resultados")
-			resultados = {"clips":data.rows}
+			resultados = {"clients":data.rows}
 		}
 		res.send(resultados);
 	});
@@ -173,7 +173,7 @@ router.get('/ingest_client', function(req, res, next) {
 				resultados = {"clips":"false"}
 			}else{
 				console.log("Yeiiii hay resultados")
-				resultados = {"clips":data.rows}
+				resultados = data.rows
 			}
 			res.send(resultados);
 		});
