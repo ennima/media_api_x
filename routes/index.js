@@ -209,7 +209,7 @@ router.get('/ingest_client_name', function(req, res, next) {
 			console.log("Data size: "+data["rows"].length)
 			if(data["rows"].length <= 0){
 				console.log("No hay resultados para la consulta")
-				resultados = {"clips":"false"}
+				resultados = {"result":"false"}
 			}else{
 				console.log("Yeiiii hay resultados")
 				// if(data.rows.length == 1)
