@@ -76,7 +76,8 @@ router.post('/add', function(req, res, next) {
   	res.send({val1:shit_msg + "(`ingest_client_id`, `origin_clip`, `dest_clip`, `time`, `reduction`, `original_represents`, `date`, `job_log`)" })
   }else
   {
-  	let time_now = getDateTime()
+  	let time_now = common.get_date_time_db()
+  	console.log("TIME NOW: " + time_now)
   	// 																																									                                                                                "(`ingest_client_id`, `origin_clip`, `dest_clip`, `time`, `reduction`, `original_represents`, `date :2018-11-23 00:00:00`, `job_log`)
 	let insert_query = "INSERT INTO `ingest_jobs` (`ingest_client_id`, `origin_clip`, `dest_clip`, `time`, `reduction`, `original_represents`, `date`, `job_log`) VALUES ('"+params.ingest_client_id+"', '"+params.origin_clip+"', '"+params.dest_clip+"', '"+params.time+"', '"+params.reduction+"', '"+params.original_represents+"', '"+time_now+"', '"+params.job_log+"');"
 	console.log(insert_query)
