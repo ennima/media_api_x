@@ -35,3 +35,21 @@ let get_return_data = module.exports.get_return_data = function(data){
     resultados = data.rows
   return resultados
 }
+
+
+
+let get_params = module.exports.get_params = function (req){
+  let result = {}
+  if(Object.keys(req.body).length > 0){
+    console.log("Hay Body")
+    result = req.body
+  }else if(Object.keys(req.query).length > 0){
+    console.log("Hay Query")
+    result = req.query
+  }else{
+    console.log("No hay parametros")
+    result = false
+  }
+
+  return result
+}
