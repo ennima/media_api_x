@@ -67,6 +67,38 @@ router.get('/count', function(req, res, next) {
 });
 
 
+router.get('/find_ingest_client', function(req, res, next) {
+	console.log("------------------------------Listing Ingest Clients:  ")
+	params = common.get_params(req)
+  if(params == false)
+  {
+  	console.log("No hay nada que hacer")
+  	res.send({val1:shit_msg + "(`ingest_client_id`)" })
+  }else
+  {
+		let find_query = "SELECT * FROM `ingest_jobs` WHERE `ingest_client_id` = " + params.ingest_client_id
+
+		console.log(find_query)
+		db.executeQuery(find_query,function(error, data){
+			console.log(error);
+				// utilidades.cors(res);
+			let resultado = {}
+			console.log("Data size: "+data["rows"].length)
+			if(data["rows"].length <= 0){
+				console.log("No hay resultados para la consulta")
+				resultados = {"result":0}
+			}else{
+				console.log("Yeiiii hay resultados")
+				// resultados = {"jobs":data.rows}
+				resultados = common.get_return_data(data)
+			}
+			res.send(resultados);
+		});
+	}
+  
+});
+
+
 router.post('/add', function(req, res, next) {
   
   params = common.get_params(req)
