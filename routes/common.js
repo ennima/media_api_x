@@ -25,3 +25,13 @@ let getDateTime = module.exports.getDateTime = function(){
 
 
 }
+
+
+let get_return_data = module.exports.get_return_data = function(data){
+  let resultados
+  if(data.rows.length == 1)
+    resultados = data.rows[0]
+  else
+    resultados = data.rows
+  return resultados
+}

@@ -173,7 +173,11 @@ router.get('/ingest_client', function(req, res, next) {
 				resultados = {"clips":"false"}
 			}else{
 				console.log("Yeiiii hay resultados")
-				resultados = data.rows
+				// if(data.rows.length == 1)
+				// 	resultados = data.rows[0]
+				// else
+				// 	resultados = data.rows
+				resultados = common.get_return_data(data)
 			}
 			res.send(resultados);
 		});
