@@ -405,7 +405,7 @@ router.post('/ingesting_ingest_client', function(req, res, next) {
   	res.send({val1:shit_msg + "(`num_clips`, `ingest_client_id`)" })
   }else
   {
-  	let message = "Ingestando "+params.num_clips+" clips"
+  	let message = ""+params.num_clips+""
   	let status = "ingest"
   	// UPDATE `istorage`.`ingest_clients` SET `status` = 'online' WHERE `ingest_clients`.`ingest_client_id` = 1;
 	let insert_query = "UPDATE `istorage`.`ingest_clients` SET `status` = '"+status+"', `message` = '"+message+"' WHERE `ingest_clients`.`ingest_client_id` = "+params.ingest_client_id+";"
