@@ -89,8 +89,8 @@ router.get('/find_ingest_client', function(req, res, next) {
 				resultados = {"result":0}
 			}else{
 				console.log("Yeiiii hay resultados")
-				// resultados = {"jobs":data.rows}
-				resultados = common.get_return_data(data)
+				resultados = {"jobs":common.get_return_data(data)}
+				// resultados = common.get_return_data(data)
 			}
 			res.send(resultados);
 		});
