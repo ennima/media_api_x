@@ -88,8 +88,40 @@ router.get('/find_ingest_client', function(req, res, next) {
 				console.log("No hay resultados para la consulta")
 				resultados = {"result":0}
 			}else{
-				console.log("Yeiiii hay resultados")
+				console.log("-------- Yeiiii hay resultados")
 				resultados = {"jobs":common.get_return_data(data)}
+				console.log(typeof(resultados))
+				console.log(Array.isArray(resultados.jobs))
+				console.log(Object.keys(resultados))
+				console.log(resultados.jobs.length)
+
+				let jobs_arr = [] 
+				for(let i = 0, len = resultados.jobs.length; i < len; i++ ){
+					//console.log(Object.keys(resultados.jobs[i]))
+					
+					let origin_clip = resultados.jobs[i].origin_clip.toString().replace(/\\/g,"\\\\")
+					let dest_clip = resultados.jobs[i].dest_clip.toString().replace(/\\/g,"\\\\")
+					let job_log = resultados.jobs[i].job_log.toString().replace(/\\/g,"\\\\")
+					// console.log(orig)
+					// console.log(JSON.parse(origin_clip))
+					let curr_job = {
+						"ingest_client_id":resultados.jobs[i].ingest_client_id,
+						"job_id":resultados.jobs[i].job_id,
+						"origin_clip":JSON.parse(origin_clip),
+						"dest_clip":JSON.parse(dest_clip),
+						"time":resultados.jobs[i].time,
+						"reduction":resultados.jobs[i].reduction,
+						"original_represents":resultados.jobs[i].original_represents,
+						"date":resultados.jobs[i].date,
+						"job_log":JSON.parse(job_log),
+					}
+					// console.log(curr_job)
+					jobs_arr.push(curr_job)
+				}
+				console.log(jobs_arr)
+				resultados.jobs = jobs_arr
+
+				console.log("--------------------------------------------")
 				// resultados = common.get_return_data(data)
 			}
 			res.send(resultados);
