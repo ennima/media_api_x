@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('./db');
 let common = require("./common");
-
+let date = require('date-and-time');
 
 
 
@@ -104,6 +104,9 @@ router.get('/find_ingest_client', function(req, res, next) {
 					let job_log = resultados.jobs[i].job_log.toString().replace(/\\/g,"\\\\")
 					// console.log(orig)
 					// console.log(JSON.parse(origin_clip))
+					console.log("Job DAte 1: "+resultados.jobs[i].date)
+					console.log("Job Date 1 parsed: "+date.format(resultados.jobs[i].date, 'YYYY/MM/DD HH:mm:ss'))
+					console.log("---------------")
 					let curr_job = {
 						"ingest_client_id":resultados.jobs[i].ingest_client_id,
 						"job_id":resultados.jobs[i].job_id,
@@ -112,13 +115,14 @@ router.get('/find_ingest_client', function(req, res, next) {
 						"time":resultados.jobs[i].time,
 						"reduction":resultados.jobs[i].reduction,
 						"original_represents":resultados.jobs[i].original_represents,
-						"date":resultados.jobs[i].date,
+						"date":date.format(resultados.jobs[i].date, 'YYYY/MM/DD HH:mm:ss'),
 						"job_log":JSON.parse(job_log),
 					}
 					// console.log(curr_job)
+					// console.log("Job DAte 2: "+curr_job.date)
 					jobs_arr.push(curr_job)
 				}
-				console.log(jobs_arr)
+				// console.log(jobs_arr)
 				resultados.jobs = jobs_arr
 
 				console.log("--------------------------------------------")
