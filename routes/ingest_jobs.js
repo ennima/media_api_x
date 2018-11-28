@@ -105,7 +105,7 @@ router.get('/find_ingest_client', function(req, res, next) {
 					// console.log(orig)
 					// console.log(JSON.parse(origin_clip))
 					console.log("Job DAte 1: "+resultados.jobs[i].date)
-					console.log("Job Date 1 parsed: "+date.format(resultados.jobs[i].date, 'DD/MM/YYYY HH:mm:ss'))
+					console.log("Job Date 1 parsed: "+date.format(resultados.jobs[i].date, 'DD-MM-YYYY HH:mm:ss'))
 					console.log("---------------")
 					let curr_job = {
 						"ingest_client_id":resultados.jobs[i].ingest_client_id,
@@ -115,7 +115,7 @@ router.get('/find_ingest_client', function(req, res, next) {
 						"time":resultados.jobs[i].time,
 						"reduction":resultados.jobs[i].reduction,
 						"original_represents":resultados.jobs[i].original_represents,
-						"date":date.format(resultados.jobs[i].date, 'DD/MM/YYYY HH:mm:ss'),
+						"date":date.format(resultados.jobs[i].date, 'DD-MM-YYYY HH:mm:ss'),
 						"job_log":JSON.parse(job_log),
 					}
 					// console.log(curr_job)
