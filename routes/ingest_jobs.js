@@ -76,7 +76,7 @@ router.get('/find_ingest_client', function(req, res, next) {
   	res.send({val1:shit_msg + "(`ingest_client_id`)" })
   }else
   {
-		let find_query = "SELECT * FROM `ingest_jobs` WHERE `ingest_client_id` = " + params.ingest_client_id + " DESC"
+		let find_query = "SELECT * FROM `ingest_jobs` WHERE `ingest_client_id` = " + params.ingest_client_id + " ORDER BY `date` DESC"
 
 		console.log(find_query)
 		db.executeQuery(find_query,function(error, data){
